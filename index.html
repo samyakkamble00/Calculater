@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Calculator</title>
+    <style>
+        #calculator {
+            margin: 0 auto;
+            width: 350px;
+            height: auto;
+            background-color: rgb(73, 0, 128);
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #screen {
+            padding: 10px 0px 10px 0px;
+        }
+
+        #result {
+            padding: 10px;
+            width: 90%;
+            border: none;
+            border-radius: 3px;
+            text-align: right;
+            font-size: 50px;
+            letter-spacing: 7px;
+        }
+
+        button {
+            width: 70px;
+            height: 50px;
+            margin: 4px;
+            border-radius: 2px;
+            background-color: whitesmoke;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        <i>Calculator</i>
+    </h1>
+    <div id="calculator">
+        <div id="screen">
+            <input type="text" id="result" readonly="readonly" />
+        </div>
+        <div id="buttons">
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>+</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>-</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>/</button>
+            <button>0</button>
+            <button>.</button>
+            <button>=</button>
+            <button>*</button>
+        </div>
+    </div>
+    <script>
+        
+        var buttons_value = {},result_value = {};
+
+        function calculate() {
+            var current_Value = this.innerHTML;
+
+            if (current_Value == '=') {
+                try {
+                    result_value.value = eval(result_value.value);
+                } catch (e) {
+                    result_value.value = null;
+                }
+                return;
+            }
+
+            result_value.value += current_Value;
+        }
+
+        function initElement() {
+            buttons_value = document.querySelectorAll('button');
+            result_value = document.querySelector('#result');
+        }
+
+        function initEvent() {
+            for (var index = 0, length = buttons_value.length; index < length; index++) {
+                buttons_value[index].addEventListener('click', calculate);
+            }
+        }
+
+        function init() {
+            initElement();
+            initEvent();
+        }
+
+        window.addEventListener('DOMContentLoaded', init);
+
+    </script>
+</body>
+
+</html>
